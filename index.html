@@ -11,14 +11,34 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #0b1329;
+            background-image: 
+                linear-gradient(rgba(11, 19, 41, 0.45), rgba(11, 19, 41, 0.55)),
+                url('LOGO SPATIAL NEW.png'),
+                url('LOGO%20SPATIAL%20NEW.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        /* Glassmorphism styling - Transparansi pas & Blur tajam */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
         
         /* Custom horizontal scrollbar */
         .table-scroll::-webkit-scrollbar {
             height: 8px;
         }
         .table-scroll::-webkit-scrollbar-track {
-            background: #0f172a;
+            background: rgba(15, 23, 42, 0.5);
         }
         .table-scroll::-webkit-scrollbar-thumb {
             background: #334155;
@@ -48,70 +68,68 @@
 
     <div class="max-w-7xl mx-auto space-y-5">
         
-        <!-- Main Header Banner with LOGO SPATIAL NEW.png -->
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 bg-slate-900 border border-slate-800 p-5 sm:p-6 rounded-2xl shadow-2xl relative overflow-hidden">
+        <!-- Main Header Banner with LOGO SPATIAL background theme & glassmorphism -->
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 glass-card p-5 sm:p-6 rounded-2xl shadow-2xl relative overflow-hidden">
             
             <!-- Background Glow Effect -->
             <div class="absolute -top-12 -left-12 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="flex items-center gap-4 sm:gap-5 z-10">
                 <!-- Logo SPATIAL Image Direct -->
-                <div class="flex-shrink-0 flex items-center justify-center p-1 bg-slate-950/60 rounded-2xl border border-slate-800 shadow-md">
+                <div class="flex-shrink-0 flex items-center justify-center p-1.5 bg-slate-950/70 rounded-2xl border border-slate-700/60 shadow-md backdrop-blur-sm">
                     <img 
                         src="LOGO SPATIAL NEW.png" 
                         alt="Logo SPATIAL" 
-                        class="h-14 sm:h-16 w-auto object-contain drop-shadow transition-transform duration-300 hover:scale-105" 
+                        class="h-14 sm:h-16 w-auto object-contain drop-shadow-md transition-transform duration-300 hover:scale-105" 
                     />
                 </div>
 
                 <!-- Titles & Subtitle -->
                 <div>
                     <div class="flex items-center gap-2 mb-1">
-                        <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] uppercase tracking-widest font-extrabold px-2.5 py-0.5 rounded-full">
+                        <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] uppercase tracking-widest font-extrabold px-2.5 py-0.5 rounded-full backdrop-blur-sm">
                             SPATIAL
                         </span>
-                        <span class="text-xs text-slate-500 font-medium">Official Leaderboard</span>
+                        <span class="text-xs text-slate-400 font-medium">Official Leaderboard</span>
                     </div>
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-                        Leaderboard & Poin
+                        Leaderboard & Statistik Poin Lomba
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-300/90 mt-1 max-w-xl">
+                        Klasemen real-time dengan pengurutan otomatis akumulasi nilai total per cabang lomba.
+                    </p>
                 </div>
             </div>
 
-            <!-- Top Summary Badges & Export Button -->
+            <!-- Top Summary Badges -->
             <div class="flex flex-wrap items-center gap-3 z-10 w-full md:w-auto justify-start md:justify-end">
-                <div class="bg-slate-950/80 border border-slate-800 px-4 py-2 rounded-xl text-center flex-1 sm:flex-none">
-                    <div class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Total Gugus</div>
+                <div class="bg-slate-950/80 border border-slate-800/80 px-4 py-2 rounded-xl text-center flex-1 sm:flex-none backdrop-blur-sm">
+                    <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Total Gugus</div>
                     <div id="statTotalTeams" class="text-base font-extrabold text-amber-400">0</div>
                 </div>
-                <div class="bg-slate-950/80 border border-slate-800 px-4 py-2 rounded-xl text-center flex-1 sm:flex-none">
-                    <div class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Cabang Lomba</div>
+                <div class="bg-slate-950/80 border border-slate-800/80 px-4 py-2 rounded-xl text-center flex-1 sm:flex-none backdrop-blur-sm">
+                    <div class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Cabang Lomba</div>
                     <div id="statTotalCats" class="text-base font-extrabold text-amber-400">0</div>
                 </div>
-                
-                <!-- Export CSV Button -->
-                <button onclick="exportToCSV()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-3.5 py-2.5 rounded-xl border border-indigo-400/30 flex items-center gap-2 transition-all shadow-lg shadow-indigo-600/20 active:scale-95">
-                    <i class="fa-solid fa-file-csv text-sm"></i>
-                    <span>Export CSV</span>
-                </button>
             </div>
         </div>
 
         <!-- Filter & Search Toolbar -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-900/80 p-3 rounded-xl border border-slate-800">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 glass-card p-3 rounded-xl">
             <!-- Search Box -->
             <div class="relative flex-1 max-w-md">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
                 <input 
                     type="text" 
                     id="searchInput" 
                     oninput="renderLeaderboard()" 
                     placeholder="Cari nama gugus..." 
-                    class="w-full bg-slate-950 border border-slate-800 text-slate-200 text-xs rounded-xl pl-9 pr-3 py-2.5 focus:outline-none focus:border-amber-500/60 transition-colors"
+                    class="w-full bg-slate-950/80 border border-slate-800 text-slate-100 text-xs rounded-xl pl-9 pr-3 py-2.5 focus:outline-none focus:border-amber-500/60 transition-colors placeholder-slate-500"
                 >
             </div>
 
             <!-- Top Leader Highlight -->
-            <div class="flex items-center gap-2.5 bg-amber-500/10 border border-amber-500/20 px-4 py-2 rounded-xl text-xs">
+            <div class="flex items-center gap-2.5 bg-amber-500/15 border border-amber-500/30 px-4 py-2 rounded-xl text-xs backdrop-blur-sm">
                 <span class="text-amber-400 font-bold flex items-center gap-1">
                     <i class="fa-solid fa-crown text-amber-400"></i> Pemimpin Klasemen:
                 </span>
@@ -119,12 +137,12 @@
             </div>
         </div>
 
-        <!-- Scrollable Leaderboard Table -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden">
+        <!-- Scrollable Leaderboard Table with Glass Effect -->
+        <div class="glass-card rounded-2xl shadow-2xl overflow-hidden">
             <div class="overflow-x-auto table-scroll">
                 <table class="w-full text-left border-collapse min-w-max">
                     <thead>
-                        <tr id="tableHeaderRow" class="bg-slate-950 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-800">
+                        <tr id="tableHeaderRow" class="bg-slate-950/90 text-slate-300 text-xs uppercase tracking-wider border-b border-slate-800/80">
                             <!-- Headers rendered dynamically via JS -->
                         </tr>
                     </thead>
@@ -136,9 +154,9 @@
         </div>
 
         <!-- Footer Info -->
-        <div class="flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 px-1 gap-2">
+        <div class="flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 px-1 gap-2">
             <span class="flex items-center gap-1.5">
-                <i class="fa-solid fa-lock text-slate-600"></i>
+                <i class="fa-solid fa-lock text-slate-500"></i>
                 Data diatur langsung via kode JavaScript (Read-Only untuk pengunjung web).
             </span>
             <span>Geser tabel ke kanan untuk melihat cabang lomba lainnya.</span>
@@ -235,14 +253,14 @@
             // 1. Render Header Tabel
             const headerRow = document.getElementById('tableHeaderRow');
             let headerHTML = `
-                <th class="py-4 px-3 text-center w-14 sticky-col-1 sticky-header bg-slate-950 border-r border-slate-800 font-bold">Pos</th>
-                <th class="py-4 px-4 min-w-[180px] sticky-col-2 sticky-header bg-slate-950 border-r border-slate-800 font-bold">Nama Gugus</th>
+                <th class="py-4 px-3 text-center w-14 sticky-col-1 sticky-header bg-slate-950/95 backdrop-blur-md border-r border-slate-800/80 font-bold">Pos</th>
+                <th class="py-4 px-4 min-w-[180px] sticky-col-2 sticky-header bg-slate-950/95 backdrop-blur-md border-r border-slate-800/80 font-bold">Nama Gugus</th>
             `;
 
             // Kolom Cabang Lomba
             CONFIG_LOMBA.categories.forEach(cat => {
                 headerHTML += `
-                    <th class="py-4 px-4 border-r border-slate-800 text-center min-w-[140px] font-bold text-slate-300">
+                    <th class="py-4 px-4 border-r border-slate-800/60 text-center min-w-[140px] font-bold text-slate-300">
                         ${escapeHtml(cat.name)}
                     </th>
                 `;
@@ -250,7 +268,7 @@
 
             // Kolom Total Poin
             headerHTML += `
-                <th class="py-4 px-4 text-right min-w-[140px] bg-indigo-950/60 text-indigo-300 font-extrabold border-l border-slate-800">Total Poin</th>
+                <th class="py-4 px-4 text-right min-w-[140px] bg-indigo-950/80 text-indigo-300 font-extrabold border-l border-slate-800/80">Total Poin</th>
             `;
 
             headerRow.innerHTML = headerHTML;
@@ -261,7 +279,7 @@
             if (filteredTeams.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="${CONFIG_LOMBA.categories.length + 3}" class="text-center py-10 text-slate-500 text-xs">
+                        <td colspan="${CONFIG_LOMBA.categories.length + 3}" class="text-center py-10 text-slate-400 text-xs">
                             Tidak ada gugus yang cocok dengan pencarian.
                         </td>
                     </tr>
@@ -273,25 +291,28 @@
                 const rankIndex = sortedTeams.findIndex(t => t.name === team.name) + 1;
 
                 let rankBadge = `<span class="text-slate-400 font-bold text-xs">#${rankIndex}</span>`;
-                let rowBgClass = "bg-slate-900/40 hover:bg-slate-800/40";
-                let stickyBgClass = "bg-slate-900";
+                let rowBgClass = "bg-slate-950/40 hover:bg-slate-800/50";
+                let stickyBgClass = "bg-slate-950/90 backdrop-blur-md";
 
                 if (rankIndex === 1) {
                     rankBadge = `<span class="text-xl inline-block drop-shadow" title="Juara 1">🥇</span>`;
-                    rowBgClass = "bg-amber-500/10 hover:bg-amber-500/15 border-l-4 border-l-amber-400";
+                    rowBgClass = "bg-amber-500/15 hover:bg-amber-500/20 border-l-4 border-l-amber-400";
+                    stickyBgClass = "bg-slate-950/95 backdrop-blur-md";
                 } else if (rankIndex === 2) {
                     rankBadge = `<span class="text-xl inline-block drop-shadow" title="Juara 2">🥈</span>`;
-                    rowBgClass = "bg-slate-400/10 hover:bg-slate-400/15 border-l-4 border-l-slate-300";
+                    rowBgClass = "bg-slate-400/15 hover:bg-slate-400/20 border-l-4 border-l-slate-300";
+                    stickyBgClass = "bg-slate-950/95 backdrop-blur-md";
                 } else if (rankIndex === 3) {
                     rankBadge = `<span class="text-xl inline-block drop-shadow" title="Juara 3">🥉</span>`;
-                    rowBgClass = "bg-amber-700/10 hover:bg-amber-700/15 border-l-4 border-l-amber-600";
+                    rowBgClass = "bg-amber-700/15 hover:bg-amber-700/20 border-l-4 border-l-amber-600";
+                    stickyBgClass = "bg-slate-950/95 backdrop-blur-md";
                 }
 
                 // Render nilai sel per lomba
                 const scoreCells = CONFIG_LOMBA.categories.map(cat => {
                     const val = team.scores[cat.id] !== undefined ? team.scores[cat.id] : 0;
                     return `
-                        <td class="py-3.5 px-4 border-r border-slate-800/60 text-center font-semibold text-slate-200">
+                        <td class="py-3.5 px-4 border-r border-slate-800/60 text-center font-semibold text-slate-100">
                             ${val}
                         </td>
                     `;
@@ -299,49 +320,19 @@
 
                 return `
                     <tr class="${rowBgClass} transition-colors">
-                        <td class="py-3.5 px-3 text-center font-bold sticky-col-1 ${stickyBgClass} border-r border-slate-800">
+                        <td class="py-3.5 px-3 text-center font-bold sticky-col-1 ${stickyBgClass} border-r border-slate-800/80">
                             ${rankBadge}
                         </td>
-                        <td class="py-3.5 px-4 font-bold text-slate-100 sticky-col-2 ${stickyBgClass} border-r border-slate-800">
+                        <td class="py-3.5 px-4 font-bold text-slate-100 sticky-col-2 ${stickyBgClass} border-r border-slate-800/80">
                             ${escapeHtml(team.name)}
                         </td>
                         ${scoreCells}
-                        <td class="py-3.5 px-4 text-right font-extrabold text-indigo-300 text-base bg-indigo-950/40 border-l border-slate-800">
+                        <td class="py-3.5 px-4 text-right font-extrabold text-indigo-300 text-base bg-indigo-950/50 border-l border-slate-800/80">
                             ${team.totalScore}
                         </td>
                     </tr>
                 `;
             }).join('');
-        }
-
-        // Export data ke file CSV
-        function exportToCSV() {
-            const sortedTeams = processAndSortData();
-            let csvContent = "data:text/csv;charset=utf-8,";
-            
-            // Header CSV
-            const headers = ["Pos", "Nama Gugus", ...CONFIG_LOMBA.categories.map(c => `"${c.name}"`), "Total Poin"];
-            csvContent += headers.join(",") + "\n";
-
-            // Data Rows CSV
-            sortedTeams.forEach((team, idx) => {
-                const row = [
-                    idx + 1,
-                    `"${team.name}"`,
-                    ...CONFIG_LOMBA.categories.map(c => team.scores[c.id] || 0),
-                    team.totalScore
-                ];
-                csvContent += row.join(",") + "\n";
-            });
-
-            // Trigger Download
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "leaderboard_spatial_lomba.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
         }
 
         function escapeHtml(str) {
